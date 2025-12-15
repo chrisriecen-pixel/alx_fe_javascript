@@ -4,20 +4,26 @@ const quotes = [
   { text: "Fix the cause, not the symptom.", category: "Debugging" }
 ];
 
-// ✅ Function name must match validator expectation
 function showRandomQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
 
   const quoteDisplay = document.getElementById("quoteDisplay");
-  quoteDisplay.innerHTML = `<p>"${quote.text}"</p><small>- ${quote.category}</small>`;
+  quoteDisplay.innerHTML = ""; // Clear previous content
+
+  const quoteText = document.createElement("p");
+  quoteText.textContent = `"${quote.text}"`;
+
+  const quoteCategory = document.createElement("small");
+  quoteCategory.textContent = `- ${quote.category}`;
+
+  quoteDisplay.appendChild(quoteText);
+  quoteDisplay.appendChild(quoteCategory);
 }
 
-// ✅ Event listener for “Show New Quote” button
 document.getElementById("newQuote").addEventListener("click", showRandomQuote);
 
-// ✅ Function name must match validator expectation
-function createAddQuoteForm() {
+function addQuote() {
   const textInput = document.getElementById("newQuoteText");
   const categoryInput = document.getElementById("newQuoteCategory");
 
@@ -28,11 +34,10 @@ function createAddQuoteForm() {
     quotes.push({ text: newText, category: newCategory });
     textInput.value = "";
     categoryInput.value = "";
-    showRandomQuote(); // ✅ Must call correct function
+    showRandomQuote();
   } else {
     alert("Please fill in both fields.");
   }
 }
 
-// ✅ Event listener for Add Quote button
-document.getElementById("addQuoteButton").addEventListener("click", createAddQuoteForm);
+document.getElementById("addQuoteButton").addEventListener("click", addQuote);
