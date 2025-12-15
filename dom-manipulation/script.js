@@ -4,8 +4,8 @@ const quotes = [
   { text: "Fix the cause, not the symptom.", category: "Debugging" }
 ];
 
-// ✅ Renamed to match validator expectation
-function showRandomQuote() {
+// ✅ Rename back to match validator
+function displayRandomQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
 
@@ -14,7 +14,7 @@ function showRandomQuote() {
 }
 
 // ✅ Event listener for “Show New Quote” button
-document.getElementById("newQuote").addEventListener("click", showRandomQuote);
+document.getElementById("newQuote").addEventListener("click", displayRandomQuote);
 
 // ✅ Function to add new quote
 function addQuote() {
@@ -28,15 +28,11 @@ function addQuote() {
     quotes.push({ text: newText, category: newCategory });
     textInput.value = "";
     categoryInput.value = "";
-    showRandomQuote(); // Show new quote immediately
+    displayRandomQuote(); // Show new quote immediately
   } else {
     alert("Please fill in both fields.");
   }
 }
-
-// ✅ Event listener for Add Quote button
-document.getElementById("addQuoteButton").addEventListener("click", addQuote);
-
 
 // ✅ Event listener for Add Quote button
 document.getElementById("addQuoteButton").addEventListener("click", addQuote);
