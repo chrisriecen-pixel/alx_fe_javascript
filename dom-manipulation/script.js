@@ -1,3 +1,9 @@
+const quotes = [
+  { text: "Code is like humor. When you have to explain it, it’s bad.", category: "Programming" },
+  { text: "Simplicity is the soul of efficiency.", category: "Design" },
+  { text: "Fix the cause, not the symptom.", category: "Debugging" }
+];
+
 function displayRandomQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
