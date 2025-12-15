@@ -1,4 +1,23 @@
-function createAddQuoteForm() {
+function displayRandomQuote() {
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  const quote = quotes[randomIndex];
+
+  const quoteDisplay = document.getElementById("quoteDisplay");
+  quoteDisplay.innerHTML = "";
+
+  const quoteText = document.createElement("p");
+  quoteText.textContent = `"${quote.text}"`;
+
+  const quoteCategory = document.createElement("small");
+  quoteCategory.textContent = `- ${quote.category}`;
+
+  quoteDisplay.appendChild(quoteText);
+  quoteDisplay.appendChild(quoteCategory);
+}
+
+document.getElementById("newQuote").addEventListener("click", displayRandomQuote);
+
+function addQuote() {
   const textInput = document.getElementById("newQuoteText");
   const categoryInput = document.getElementById("newQuoteCategory");
 
@@ -9,10 +28,10 @@ function createAddQuoteForm() {
     quotes.push({ text: newText, category: newCategory });
     textInput.value = "";
     categoryInput.value = "";
-    showRandomQuote();
+    displayRandomQuote();
   } else {
     alert("Please fill in both fields.");
   }
 }
 
-document.getElementById("addQuoteButton").addEventListener("click", createAddQuoteForm);
+document.getElementById("addQuoteButton").addEventListener("click", addQuote);
