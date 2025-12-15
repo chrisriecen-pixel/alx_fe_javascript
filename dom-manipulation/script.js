@@ -1,14 +1,4 @@
-function showRandomQuote() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    const quote = quotes[randomIndex];
-
-    const quoteDisplay = document.getElementById("quoteDisplay");
-    quoteDisplay.innerHTML = `<p>${quote.text}</p><small>- ${quote.category}</small>`;
-}
-
-document.getElementById("newQuote").addEventListener("click", showRandomQuote);
-
-function addQuote() {
+function createAddQuoteForm() {
     const textInput = document.getElementById("newQuoteText");
     const categoryInput = document.getElementById("newQuoteCategory");
 
@@ -19,10 +9,10 @@ function addQuote() {
         quotes.push({ text: newText, category: newCategory });
         textInput.value = "";
         categoryInput.value = "";
-        showRandomQuote(); // ✅ must call the correct function
+        showRandomQuote();
     } else {
         alert("Please fill in both fields.");
     }
 }
 
-document.getElementById("addQuoteButton").addEventListener("click", addQuote);
+document.getElementById("addQuoteButton").addEventListener("click", createAddQuoteForm);
