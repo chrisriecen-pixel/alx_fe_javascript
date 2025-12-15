@@ -4,7 +4,6 @@ const quotes = [
   { text: "Fix the cause, not the symptom.", category: "Debugging" }
 ];
 
-// ✅ Rename back to match validator
 function displayRandomQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
@@ -13,10 +12,8 @@ function displayRandomQuote() {
   quoteDisplay.innerHTML = `<p>"${quote.text}"</p><small>— ${quote.category}</small>`;
 }
 
-// ✅ Event listener for “Show New Quote” button
 document.getElementById("newQuote").addEventListener("click", displayRandomQuote);
 
-// ✅ Function to add new quote
 function addQuote() {
   const textInput = document.getElementById("newQuoteText");
   const categoryInput = document.getElementById("newQuoteCategory");
@@ -28,11 +25,10 @@ function addQuote() {
     quotes.push({ text: newText, category: newCategory });
     textInput.value = "";
     categoryInput.value = "";
-    displayRandomQuote(); // Show new quote immediately
+    displayRandomQuote();
   } else {
     alert("Please fill in both fields.");
   }
 }
 
-// ✅ Event listener for Add Quote button
 document.getElementById("addQuoteButton").addEventListener("click", addQuote);
