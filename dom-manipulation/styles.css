@@ -15,7 +15,7 @@ h1, h2 {
   border-left: 4px solid #4CAF50;
 }
 
-input {
+input, select {
   margin: 5px;
   padding: 8px;
   width: 200px;

@@ -7,8 +7,13 @@
 </head>
 <body>
   <h1>Quote Generator</h1>
-  <div id="quoteDisplay"></div>
 
+  <h2>Filter by Category</h2>
+  <select id="categoryFilter" onchange="filterQuotes()">
+    <option value="all">All Categories</option>
+  </select>
+
+  <div id="quoteDisplay"></div>
   <button id="newQuote">Show New Quote</button>
 
   <h2>Add a Quote</h2>
