@@ -1,32 +1,35 @@
 body {
   font-family: Arial, sans-serif;
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  text-align: center;
+  margin: 20px;
+  background-color: #f4f4f4;
+}
+
+h1, h2 {
+  color: #333;
 }
 
 #quoteDisplay {
   margin: 20px 0;
-  font-size: 18px;
+  padding: 10px;
+  background-color: #fff;
+  border-left: 4px solid #4CAF50;
 }
 
 input {
-  padding: 10px;
   margin: 5px;
-  width: 80%;
+  padding: 8px;
+  width: 200px;
 }
 
 button {
-  padding: 10px 20px;
-  margin: 10px;
-  background-color: #FF6565;
+  margin: 5px;
+  padding: 8px 12px;
+  background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #e04c4c;
+  background-color: #45a049;
 }
