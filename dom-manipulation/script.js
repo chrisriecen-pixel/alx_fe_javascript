@@ -129,7 +129,7 @@ function showNotification(message) {
   setTimeout(() => note.style.display = "none", 4000);
 }
 
-async function fetchServerQuotes() {
+async function fetchQuotesFromServer() {
   try {
     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
     const serverQuotes = await response.json();
@@ -139,13 +139,13 @@ async function fetchServerQuotes() {
       category: "Server"
     }));
 
-    resolveConflicts(formatted);
+    syncQuotes(formatted);
   } catch (error) {
     console.error("Failed to fetch server quotes:", error);
   }
 }
 
-function resolveConflicts(serverQuotes) {
+function syncQuotes(serverQuotes) {
   let updated = false;
 
   serverQuotes.forEach(serverQuote => {
@@ -170,4 +170,4 @@ function resolveConflicts(serverQuotes) {
 loadQuotes();
 populateCategories();
 loadLastQuote();
-setInterval(fetchServerQuotes, 10000);
+setInterval(fetchQuotesFromServer, 10000);
