@@ -86,9 +86,11 @@ function createAddQuoteForm() {
   const newCategory = categoryInput.value.trim();
 
   if (newText && newCategory) {
-    quotes.push({ text: newText, category: newCategory });
+    const newQuote = { text: newText, category: newCategory };
+    quotes.push(newQuote);
     saveQuotes();
     populateCategories();
+    postQuoteToServer(newQuote);
     textInput.value = "";
     categoryInput.value = "";
     showRandomQuote();
@@ -164,6 +166,26 @@ function syncQuotes(serverQuotes) {
     saveQuotes();
     populateCategories();
     showNotification("New quotes synced from server.");
+  }
+}
+
+async function postQuoteToServer(quote) {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(quote)
+    });
+
+    if (response.ok) {
+      showNotification("Quote posted to server successfully.");
+    } else {
+      console.warn("Server rejected the quote.");
+    }
+  } catch (error) {
+    console.error("Failed to post quote:", error);
   }
 }
 
