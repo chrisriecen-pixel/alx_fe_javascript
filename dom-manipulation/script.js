@@ -122,6 +122,52 @@ function importFromJsonFile(event) {
   fileReader.readAsText(event.target.files[0]);
 }
 
+function showNotification(message) {
+  const note = document.getElementById("notification");
+  note.textContent = message;
+  note.style.display = "block";
+  setTimeout(() => note.style.display = "none", 4000);
+}
+
+async function fetchServerQuotes() {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const serverQuotes = await response.json();
+
+    const formatted = serverQuotes.slice(0, 5).map(post => ({
+      text: post.title,
+      category: "Server"
+    }));
+
+    resolveConflicts(formatted);
+  } catch (error) {
+    console.error("Failed to fetch server quotes:", error);
+  }
+}
+
+function resolveConflicts(serverQuotes) {
+  let updated = false;
+
+  serverQuotes.forEach(serverQuote => {
+    const exists = quotes.some(localQuote =>
+      localQuote.text === serverQuote.text &&
+      localQuote.category === serverQuote.category
+    );
+
+    if (!exists) {
+      quotes.push(serverQuote);
+      updated = true;
+    }
+  });
+
+  if (updated) {
+    saveQuotes();
+    populateCategories();
+    showNotification("New quotes synced from server.");
+  }
+}
+
 loadQuotes();
 populateCategories();
 loadLastQuote();
+setInterval(fetchServerQuotes, 10000);
